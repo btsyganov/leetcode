@@ -13,32 +13,38 @@ public class Main4 {
 
     int[] nums11 = new int[] {1, 2};
     int[] nums21 = new int[] {3, 4};
-    main4.findMedianSortedArrays(nums11, nums21);
+    assert 2.5 == main4.findMedianSortedArrays(nums11, nums21);
 
     int[] nums12 = new int[] {1, 3};
     int[] nums22 = new int[] {2};
-    main4.findMedianSortedArrays(nums12, nums22);
+    assert 2.0 == main4.findMedianSortedArrays(nums12, nums22);
   }
 
   public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-    int[] res = new int[nums1.length + nums2.length];
-
     boolean isEven = (nums1.length + nums2.length) % 2 == 0;
     int medianIndex = (nums1.length + nums2.length - 1) / 2;
 
     int num1Index = 0;
     int num2Index = 0;
-    for (int i = 0; i < res.length; i++) {
-      if (num1Index >= nums1.length || (!(num2Index >= nums2.length) && nums1[num1Index] > nums2[num2Index])) {
-        res[i] = nums2[num2Index++];
+    int a = 0, b = 0;
+    for (int i = 0; i <= (isEven ? medianIndex + 1 : medianIndex); i++) {
+      int current;
+      if (num1Index >= nums1.length ||
+          (!(num2Index >= nums2.length) && nums1[num1Index] > nums2[num2Index])) {
+        current = nums2[num2Index++];
       } else {
-        res[i] = nums1[num1Index++];
+        current = nums1[num1Index++];
+      }
+      if (i == medianIndex) {
+        a = current;
+      } else if (i == medianIndex + 1) {
+        b = current;
       }
     }
     if (isEven) {
-      return ((double) (res[medianIndex] + res[medianIndex + 1])) / 2;
+      return ((double) (a + b)) / 2;
     } else {
-      return res[medianIndex];
+      return a;
     }
   }
 
