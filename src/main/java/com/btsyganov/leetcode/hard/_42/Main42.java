@@ -8,7 +8,7 @@ public class Main42 {
   static Main42 main42 = new Main42();
 
   public static void main(String[] args) {
-    main42.trap(new int[] {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1});
+    assert 6 == main42.trap(new int[] {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1});
   }
 
   public int trap(int[] height) {
